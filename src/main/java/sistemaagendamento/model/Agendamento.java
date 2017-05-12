@@ -1,6 +1,10 @@
 package sistemaagendamento.model;
 
-public class Agendamento {
+import java.io.Serializable;
+
+public class Agendamento implements Serializable{
+    
+    private static final long serialVersionUID = -3682557083920024750L;
 
     private int agendamento_id;
     private String diasemana;
@@ -38,12 +42,5 @@ public class Agendamento {
     public void setHoraFinal(String horaFinal) {
         this.horaFinal = horaFinal;
     }
-    
-    
-
-    @Override
-    public String toString() {
-        return this.diasemana + this.horaInicial + this.horaFinal;
-    }
-
+   
 }

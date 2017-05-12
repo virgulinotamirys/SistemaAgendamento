@@ -14,9 +14,9 @@ public class AgendamentoRN {
     }
 
     public void salvar(Agendamento agendamento) {
-        int id = agendamento.getAgendamento_id();
+        Integer id = agendamento.getAgendamento_id();
 
-        if (id == 0) {
+        if (id == null) {
             agendamentoDAO.salvar(agendamento);
         } else {
             agendamentoDAO.atualizar(agendamento);
@@ -33,6 +33,10 @@ public class AgendamentoRN {
 
     public List<Agendamento> listar() {
         return agendamentoDAO.listar();
+    }
+    
+    public Agendamento getLast() {
+        return agendamentoDAO.getLast();
     }
 
 }

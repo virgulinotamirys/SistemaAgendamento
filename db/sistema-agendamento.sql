@@ -218,8 +218,8 @@ select * from vw_comentario;
 CREATE TABLE agendamento (
   agendamento_id INT NOT NULL,
   diasemana VARCHAR(20) NOT NULL,
-  horaInicial TIME NOT NULL,
-  horaFinal TIME NOT NULL,
+  horaInicial VARCHAR(20) NOT NULL,
+  horaFinal VARCHAR(20) NOT NULL,
   PRIMARY KEY (agendamento_id)
 );
 

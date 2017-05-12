@@ -16,7 +16,7 @@ public class AgendamentoDAO {
     }
 
     public void salvar(Agendamento agendamento) {
-        String sql = "INSERT INTO agendamento (diasemana, horaInicial, horaFinal) VALUES (?,?,?)";
+        String sql = "INSERT INTO agendamento (diasemana, horaInicial, horaFinal) VALUES (?, ?, ?)";
         Connection connection = DBConnection.getConnection();
 
         try {
@@ -103,6 +103,40 @@ public class AgendamentoDAO {
                 agendamento.setHoraInicial(resultSet.getString("horaInicial"));
                 agendamento.setHoraFinal(resultSet.getString("horaFinal"));
                 
+                System.out.println("Agendamento localizado(a) com sucesso");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        return agendamento;
+
+    }
+    
+    public Agendamento getLast() {
+        String sql = "SELECT * FROM agendamento ORDER BY agendamento_id DESC LIMIT 1";
+        Connection connection = DBConnection.getConnection();
+
+        Agendamento agendamento = null;
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.first()) {
+                agendamento = new Agendamento();
+
+                agendamento.setAgendamento_id(resultSet.getInt("agendamento_id"));
+                agendamento.setDiasemana(resultSet.getString("diasemana"));
+                agendamento.setHoraInicial(resultSet.getString("horaInicial"));
+                agendamento.setHoraFinal(resultSet.getString("horaFinal"));
+
                 System.out.println("Agendamento localizado(a) com sucesso");
             }
         } catch (SQLException ex) {
