@@ -39,12 +39,12 @@ public class AgendamentoDAO {
     }
 
     public void excluir(Agendamento agendamento) {
-        String sql = "DELETE FROM agendamento WHERE id = ?";
+        String sql = "DELETE FROM agendamento WHERE agendamento_id = ?";
         Connection connection = DBConnection.getConnection();
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, agendamento.getId());
+            statement.setInt(1, agendamento.getAgendamento_id());
 
             statement.execute();
             System.out.println("Agendamento deletado(a) com sucesso");
@@ -60,7 +60,7 @@ public class AgendamentoDAO {
     }
 
     public void atualizar(Agendamento agendamento) {
-        String sql = "UPDATE agendamento SET id = ?, diasemana = ?, horaInicial = ?, horaFinal = ? WHERE id = ?";
+        String sql = "UPDATE agendamento SET agendamento_id = ?, diasemana = ?, horaInicial = ?, horaFinal = ? WHERE id = ?";
         Connection connection = DBConnection.getConnection();
 
         try {
@@ -68,7 +68,7 @@ public class AgendamentoDAO {
             statement.setString(1, agendamento.getDiasemana());
             statement.setString(2, agendamento.getHoraFinal());
             statement.setString(3, agendamento.getHoraFinal());
-            statement.setInt(2, agendamento.getId());
+            statement.setInt(2, agendamento.getAgendamento_id());
 
             statement.execute();
             System.out.println("Agendamento atualizado(a) com sucesso");
@@ -84,7 +84,7 @@ public class AgendamentoDAO {
     }
 
     public Agendamento localizar(int id) {
-        String sql = "SELECT * FROM agendamento WHERE id = ?";
+        String sql = "SELECT * FROM agendamento WHERE agendamento_id = ?";
         Connection connection = DBConnection.getConnection();
 
         Agendamento agendamento = null;
@@ -98,7 +98,7 @@ public class AgendamentoDAO {
             if (resultSet.first()) {
                 agendamento = new Agendamento();
 
-                agendamento.setId(resultSet.getInt("id"));
+                agendamento.setAgendamento_id(resultSet.getInt("agendamento_id"));
                 agendamento.setDiasemana(resultSet.getString("diasemana"));
                 agendamento.setHoraInicial(resultSet.getString("horaInicial"));
                 agendamento.setHoraFinal(resultSet.getString("horaFinal"));
@@ -136,7 +136,7 @@ public class AgendamentoDAO {
 
                 Agendamento agendamento = new Agendamento();
 
-                agendamento.setId(resultSet.getInt("id"));
+                agendamento.setAgendamento_id(resultSet.getInt("agendamento_id"));
                 agendamento.setDiasemana(resultSet.getString("diasemana"));
                 agendamento.setHoraInicial(resultSet.getString("horaInicial"));
                 agendamento.setHoraFinal(resultSet.getString("horaFinal"));

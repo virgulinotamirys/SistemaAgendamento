@@ -2,17 +2,17 @@ package sistemaagendamento.model;
 
 public class Agendamento {
 
-    private int id;
+    private int agendamento_id;
     private String diasemana;
     private String horaInicial;
     private String horaFinal;
 
-    public int getId() {
-        return this.id;
+    public int getAgendamento_id() {
+        return agendamento_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setAgendamento_id(int agendamento_id) {
+        this.agendamento_id = agendamento_id;
     }
 
     public String getDiasemana() {

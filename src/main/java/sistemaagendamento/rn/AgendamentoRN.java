@@ -14,7 +14,7 @@ public class AgendamentoRN {
     }
 
     public void salvar(Agendamento agendamento) {
-        int id = agendamento.getId();
+        int id = agendamento.getAgendamento_id();
 
         if (id == 0) {
             agendamentoDAO.salvar(agendamento);
