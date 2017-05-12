@@ -10,9 +10,17 @@
             <h:inputHidden value="#{agendamentoBean.agendamento.id}"/>
 
             <div class="form-group">
-                <label for="descricao" class="col-sm-2 control-label">Descrição</label>
+                <label for="diasemana" class="col-sm-2 control-label">Dia da semana</label>
                 <div class="col-sm-10">
-                    <h:inputText id="descricao" label="Descrição" value="#{agendamentoBean.agendamento.descricao}" class="form-control"/>
+                    <h:inputText id="diasemana" label="Dia da semana" value="#{agendamentoBean.agendamento.diasemana}" class="form-control"/>
+                </div>
+                <label for="horaInicial" class="col-sm-2 control-label">Hora Inicial</label>
+                <div class="col-sm-10">
+                    <h:inputText id="horaInicial" label="Hora Inicial" value="#{agendamentoBean.agendamento.horaInicial}" class="form-control"/>
+                </div>
+                <label for="horaFinal" class="col-sm-2 control-label">Hora Final</label>
+                <div class="col-sm-10">
+                    <h:inputText id="horaFinal" label="Hora Final" value="#{agendamentoBean.agendamento.horaFinal}" class="form-control"/>
                 </div>
             </div>
 

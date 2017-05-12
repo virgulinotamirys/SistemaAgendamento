@@ -24,10 +24,20 @@
                         </h:column>
 
                         <h:column>
-                            <f:facet name="header">Descrição</f:facet>
-                                #{agendamento.descricao}
+                            <f:facet name="header">Dia da Semana</f:facet>
+                                #{agendamento.diasemana}
                         </h:column>
-
+                        
+                        <h:column>
+                            <f:facet name="header">Hora Inicial</f:facet>
+                                #{agendamento.horaInicial}
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header">Hora Final</f:facet>
+                                #{agendamento.horaFinal}
+                        </h:column>
+                        
                         <h:column>
                             <f:facet name="header">Ações</f:facet>
 
@@ -38,7 +48,7 @@
                             </h:commandLink>
 
                             <h:commandLink action="#{agendamentoBean.excluir}"
-                                           onclick="if (!confirm('Tem certeza que deseja excluir o agendamento #{agendamento.descricao}?'))
+                                           onclick="if (!confirm('Tem certeza que deseja excluir o agendamento #{agendamento.diasemana}?'))
                                                        return false;">
                                 <i class="fa fa-trash"></i>
                                 <f:setPropertyActionListener target="#{agendamentoBean.agendamento}"
