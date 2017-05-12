@@ -16,13 +16,15 @@ public class AgendamentoDAO {
     }
 
     public void salvar(Agendamento agendamento) {
-        String sql = "INSERT INTO agendamento (descricao) VALUES (?)";
+        String sql = "INSERT INTO agendamento (diasemana, horaInicial, horaFinal) VALUES (?,?,?)";
         Connection connection = DBConnection.getConnection();
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, agendamento.getDescricao());
-
+            statement.setString(1, agendamento.getDiasemana());
+            statement.setString(2, agendamento.getHoraInicial());
+            statement.setString(3, agendamento.getHoraInicial());
+            
             statement.execute();
             System.out.println("Agendamento salvo(a) com sucesso");
         } catch (SQLException ex) {
@@ -58,12 +60,14 @@ public class AgendamentoDAO {
     }
 
     public void atualizar(Agendamento agendamento) {
-        String sql = "UPDATE agendamento SET id = ?, descricao = ? WHERE id = ?";
+        String sql = "UPDATE agendamento SET id = ?, diasemana = ?, horaInicial = ?, horaFinal = ? WHERE id = ?";
         Connection connection = DBConnection.getConnection();
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, agendamento.getDescricao());
+            statement.setString(1, agendamento.getDiasemana());
+            statement.setString(2, agendamento.getHoraFinal());
+            statement.setString(3, agendamento.getHoraFinal());
             statement.setInt(2, agendamento.getId());
 
             statement.execute();
@@ -95,8 +99,10 @@ public class AgendamentoDAO {
                 agendamento = new Agendamento();
 
                 agendamento.setId(resultSet.getInt("id"));
-                agendamento.setDescricao(resultSet.getString("descricao"));
-
+                agendamento.setDiasemana(resultSet.getString("diasemana"));
+                agendamento.setHoraInicial(resultSet.getString("horaInicial"));
+                agendamento.setHoraFinal(resultSet.getString("horaFinal"));
+                
                 System.out.println("Agendamento localizado(a) com sucesso");
             }
         } catch (SQLException ex) {
@@ -131,7 +137,9 @@ public class AgendamentoDAO {
                 Agendamento agendamento = new Agendamento();
 
                 agendamento.setId(resultSet.getInt("id"));
-                agendamento.setDescricao(resultSet.getString("descricao"));
+                agendamento.setDiasemana(resultSet.getString("diasemana"));
+                agendamento.setHoraInicial(resultSet.getString("horaInicial"));
+                agendamento.setHoraFinal(resultSet.getString("horaFinal"));
 
                 agendamentoList.add(agendamento);
 
