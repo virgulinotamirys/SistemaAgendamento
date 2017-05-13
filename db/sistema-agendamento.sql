@@ -223,14 +223,32 @@ CREATE TABLE agendamento (
   PRIMARY KEY (agendamento_id)
 );
 
+create view vw_agendamento as
+select *
+from agendamento;
+
+DELIMITER $$
+CREATE PROCEDURE insert_agendamento(in p_diasemana varchar(20), in p_horaInicial varchar(20), in p_horaFinal varchar(20))
+BEGIN
+	set autocommit = 0;
+	start transaction;
+		insert into agendamento(diasemana, horaInicial, horaFinal) values (p_diasemana, p_horaInicial, p_horaFinal);
+        set @agendamento_id = last_insert_id();
+		insert into log_agendamento(agendamento_id, diasemana, horaInicial, horaFinal, data_registro) values (@agendamento_id, p_diasemana, p_horaInicial, p_horaFinal, now());
+	commit;
+END $$
+DELIMITER ;
+
 CREATE TABLE log_agendamento (
-  usuario_id INT NOT NULL,
+  /*usuario_id INT NOT NULL,*/
   agendamento_id INT NOT NULL,
   diasemana VARCHAR(20) NOT NULL,
-  horaInicial TIME NOT NULL,
-  horaFinal TIME NOT NULL,
+  horaInicial VARCHAR(20) NOT NULL,
+  horaFinal VARCHAR(20) NOT NULL,
   data_registro timestamp NOT NULL
 );
+
+/*--------- */
 
 
 CREATE TABLE agendamento_subcategoria (

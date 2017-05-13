@@ -16,7 +16,8 @@ public class AgendamentoDAO {
     }
 
     public void salvar(Agendamento agendamento) {
-        String sql = "INSERT INTO agendamento (diasemana, horaInicial, horaFinal) VALUES (?, ?, ?)";
+        String sql = "CALL insert_agendamento(?, ?, ?)";
+//        String sql = "INSERT INTO agendamento (diasemana, horaInicial, horaFinal) VALUES (?, ?, ?)";;
         Connection connection = DBConnection.getConnection();
 
         try {
@@ -154,7 +155,7 @@ public class AgendamentoDAO {
     }
 
     public List<Agendamento> listar() {
-        String sql = "SELECT * FROM agendamento";
+        String sql = "SELECT * FROM vw_agendamento";
         Connection connection = DBConnection.getConnection();
 
         List<Agendamento> agendamentoList = null;
