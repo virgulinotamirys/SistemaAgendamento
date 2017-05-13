@@ -27,7 +27,7 @@ public class AgendamentoRN {
         agendamentoDAO.excluir(agendamento);
     }
 
-    public Agendamento localizar(int id) {
+    public Agendamento localizar(Integer id) {
         return agendamentoDAO.localizar(id);
     }
 

@@ -216,7 +216,7 @@ select * from vw_comentario;
 /* ------------------------ */
 
 CREATE TABLE agendamento (
-  agendamento_id INT NOT NULL,
+  agendamento_id INT AUTO_INCREMENT NOT NULL,
   diasemana VARCHAR(20) NOT NULL,
   horaInicial VARCHAR(20) NOT NULL,
   horaFinal VARCHAR(20) NOT NULL,

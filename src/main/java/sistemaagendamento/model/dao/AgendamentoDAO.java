@@ -23,7 +23,7 @@ public class AgendamentoDAO {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, agendamento.getDiasemana());
             statement.setString(2, agendamento.getHoraInicial());
-            statement.setString(3, agendamento.getHoraInicial());
+            statement.setString(3, agendamento.getHoraFinal());
             
             statement.execute();
             System.out.println("Agendamento salvo(a) com sucesso");
@@ -60,15 +60,15 @@ public class AgendamentoDAO {
     }
 
     public void atualizar(Agendamento agendamento) {
-        String sql = "UPDATE agendamento SET agendamento_id = ?, diasemana = ?, horaInicial = ?, horaFinal = ? WHERE id = ?";
+        String sql = "UPDATE agendamento SET diasemana = ?, horaInicial = ?, horaFinal = ? WHERE agendamento_id = ?";
         Connection connection = DBConnection.getConnection();
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, agendamento.getDiasemana());
-            statement.setString(2, agendamento.getHoraFinal());
+            statement.setString(2, agendamento.getHoraInicial());
             statement.setString(3, agendamento.getHoraFinal());
-            statement.setInt(2, agendamento.getAgendamento_id());
+            statement.setInt(4, agendamento.getAgendamento_id().intValue());
 
             statement.execute();
             System.out.println("Agendamento atualizado(a) com sucesso");
@@ -170,7 +170,7 @@ public class AgendamentoDAO {
 
                 Agendamento agendamento = new Agendamento();
 
-                agendamento.setAgendamento_id(resultSet.getInt("agendamento_id"));
+                agendamento.setAgendamento_id(Integer.valueOf(resultSet.getInt("agendamento_id")));
                 agendamento.setDiasemana(resultSet.getString("diasemana"));
                 agendamento.setHoraInicial(resultSet.getString("horaInicial"));
                 agendamento.setHoraFinal(resultSet.getString("horaFinal"));

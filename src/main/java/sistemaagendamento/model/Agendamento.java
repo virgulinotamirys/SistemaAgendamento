@@ -6,16 +6,16 @@ public class Agendamento implements Serializable{
     
     private static final long serialVersionUID = -3682557083920024750L;
 
-    private int agendamento_id;
+    private Integer agendamento_id;
     private String diasemana;
     private String horaInicial;
     private String horaFinal;
 
-    public int getAgendamento_id() {
+    public Integer getAgendamento_id() {
         return agendamento_id;
     }
 
-    public void setAgendamento_id(int agendamento_id) {
+    public void setAgendamento_id(Integer agendamento_id) {
         this.agendamento_id = agendamento_id;
     }
 
