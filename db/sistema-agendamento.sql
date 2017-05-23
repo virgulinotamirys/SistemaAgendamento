@@ -323,3 +323,7 @@ select * from vw_acesso_usuario_curso;
 /*call select_login_usuario('tamirys','123');
 call insert_insere_agendamento(1,1,'segunda-feira','14:00:00','17:00:00');*/
 
+/* Script de manutenção de BD */
+select * from agendamento order by agendamento.agendamento_id limit 10;
+
+optimize table agendamento;
