@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sistemaagendamento.model.Agendamento;
+import sistemaagendamento.model.OptimizeTable;
 
 public class AgendamentoDAO {
 
@@ -192,4 +193,37 @@ public class AgendamentoDAO {
 
         return agendamentoList;
     }
+     public List<OptimizeTable> optimize() {
+        String sql = "OPTIMIZE TABLE curso";
+        Connection connection = DBConnection.getConnection();
+
+        List<OptimizeTable> list = new ArrayList<OptimizeTable>();
+        
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                OptimizeTable optimizeTable = new OptimizeTable();
+                
+                optimizeTable.setTable(resultSet.getString("table"));
+                optimizeTable.setOp(resultSet.getString("Op"));
+                optimizeTable.setMsgType(resultSet.getString("Msg_type"));
+                optimizeTable.setMsgText(resultSet.getString("Msg_text"));
+                
+                list.add(optimizeTable);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        return list;
+    }
+    
 }
